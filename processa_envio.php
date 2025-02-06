@@ -65,13 +65,13 @@ try {
     $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
     $mail->Username   = 'josiasdev97@gmail.com';                     //SMTP username
-    $mail->Password   = 'minhasenha';                               //SMTP password
+    $mail->Password   = 'minha senha';                               //SMTP password
     $mail->SMTPSecure = 'ssl';            //Enable implicit TLS encryption
     $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
     //Recipients
-    $mail->setFrom('josiasdev97@gmail.com', 'Josias Remetente');
-    $mail->addAddress('josiasdev97@gmail.com', 'Josias Destinatário');     //Add a recipient
+    $mail->setFrom('josiasdev97@gmail.com', 'Josias Gonçalves');
+    $mail->addAddress($mensagem->__get('para'));     //Add a recipient
     //$mail->addReplyTo('info@example.com', 'Information');
     //$mail->addCC('cc@example.com');
     //$mail->addBCC('bcc@example.com');
@@ -82,9 +82,9 @@ try {
 
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
-    $mail->Subject = 'Assunto';
-    $mail->Body    = 'Conteúdo do <b>E-mail</b>';
-    $mail->AltBody = 'Conteúdo do E-mail';
+    $mail->Subject = $mensagem->__get('assunto');
+    $mail->Body    = $mensagem->__get('mensagem');
+    $mail->AltBody = 'É necessário utulizar um client que suporte HTML para ter acesso total ao conteúdo dessa mensagem.';
 
     $mail->send();
     echo 'E-mail enviado com sucesso.';
